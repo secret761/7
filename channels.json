@@ -86,5 +86,12 @@
     "logo": "http://jiotv.catchup.cdn.jio.com/dare_images/images/NDTV_24x7.png",
     "name": "NDTV 24x7",
     "url": "https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/master.m3u8"
-  }
+  },
+  {
+    "id": "972",
+    "group": "Devotional",
+    "logo": "https://jiotv.catchup.cdn.jio.com/dare_images/images/Sarv_Dharam_Sangam.png",
+    "name": "Sarv Dharam Sangam",
+    "url": "https://95eryw7zdwn4-hls-live.wmncdn.net/sarvdharamsangam/tv.stream/index.m3u8"
+}
 ]
