@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>JioCinema BY DRMLIVE</title>
+    <title>JioCine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
@@ -16,12 +16,15 @@
     <style>
         /* Your CSS Styles */
         @import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+        *{
+            margin: 0;padding: 0;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            padding: 20px;
             background-color: #f1f1f1;
             color: #333;
+            padding-bottom: 20px;
         }
         .header-container {
             display: flex;
@@ -30,11 +33,11 @@
             font-weight: 700;
             font-size: 28px;
             color: #333;
-            text-align: left;
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 20px;
-            margin-top: 20px;
+            margin-top: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
             background-color: #f8f8f8;
             padding: 7px 20px;
@@ -62,6 +65,7 @@
             transition: transform .3s ease, box-shadow .3s ease;
             background-color: #fff;
             padding: 10px;
+            /* height: 115px; */
         }
         .directory-item img,
         .file-item img {
@@ -139,13 +143,48 @@
             color: #fff;
             border: 1px solid #555;
         }
+        @media (max-width: 568px) {
+  .channels-container {
+    grid-template-columns: repeat(2, 1fr); /* 3 equal columns on mobile */
+  }
+
+  .directory-item {
+    /* Reduce size for smaller screens */
+    font-size: 14px; /* Adjust font size */
+    padding: 10px; /* Reduce padding */
+    max-width: 40%; /* Optional: limit width */
+    margin:  auto; /* Center the item */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .file-container{
+    padding: 0;
+  }
+  .directory-item,
+        .file-item {
+            
+            padding: 5px;
+            height: auto;
+        }
+        .directory-item img,
+        .file-item img {
+            max-width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transition: transform .3s ease;
+        }
+
+}
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body class="dark-mode"> <!-- Start in dark mode -->
     <div class="header-container">
-        <h1 id="title">JioCinema BY DRMLIVE</h1>
+        <h1 id="title">JioCine</h1>
         <div class="toggle-wrapper">
             <input type="checkbox" class="checkbox" id="checkbox" checked> <!-- checkbox checked by default -->
             <label for="checkbox" class="checkbox-label">
@@ -188,7 +227,7 @@
 
                     // Wrap the entire directory-item inside the anchor tag
                     const channelLink = document.createElement('a');
-                    channelLink.href = '/Play.html?id=' + channel.id;
+                    channelLink.href = './Play.html?id=' + channel.id;
                     channelLink.classList.add('channel-link');  // Optional, for extra styling
 
                     const channelImg = document.createElement('img');
@@ -246,6 +285,7 @@
         checkbox.addEventListener("change", () => {
             document.body.classList.toggle("dark-mode");
         });
+        
     </script>
 </body>
 

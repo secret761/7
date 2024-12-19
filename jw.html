@@ -37,7 +37,6 @@
             z-index: 999;
         }
 
-        /* The controls will always be at the top */
         .jw-player .jw-controls {
             position: absolute;
             top: 0;
@@ -45,7 +44,6 @@
             z-index: 100;
         }
 
-        /* Timeline (slider) should always be at the bottom */
         .jw-player .jw-slider-container {
             position: absolute;
             bottom: 0;
@@ -53,30 +51,25 @@
             z-index: 50;
         }
 
-        /* Video should fill the available space excluding the controls and timeline */
         .jw-player .jw-video {
             width: 100%;
-            height: calc(100% - 80px); /* Adjust to make room for controls and timeline */
+            height: calc(100% - 80px);
         }
 
-        /* If there's no timeline, adjust control bar space */
         .jw-player.no-timeline .jw-video {
             height: 100%;
         }
 
-        /* Optional: Adjust background color or other styles */
         .jw-player .jw-slider-time {
             background-color: #000 !important;
         }
 
-        /* Adjust button style */
         .jw-button.custom-button {
             background-color: #f00;
             width: 50px;
             height: 50px;
         }
 
-        /* Container for buttons */
         .jw-player .jw-button-container {
             display: flex;
             justify-content: space-between;
@@ -102,11 +95,9 @@
                 displaytitle: true,
                 autoplay: true,
                 displaydescription: true,
-                abouttext: "Video Player By DRMLIVE",
-                aboutlink: "https://t.me/+_RiCu2cz5TkxZmU1",
-                skin: {
-                    name: "netflix"
-                },
+                abouttext: "DRMLIVE",
+                aboutlink: "",
+                skin: { name: "netflix" },
                 captions: {
                     color: "#FFF",
                     fontSize: 14,
@@ -130,10 +121,7 @@
                 advertising: {
                     client: "vast",
                     schedule: [
-                        {
-                            offset: "pre",
-                            tag: ""
-                        }
+                        { offset: "pre", tag: "" }
                     ]
                 }
             });
@@ -151,9 +139,7 @@
                         const nextStretching = stretchingModes[nextIndex];
 
                         // Update the player stretching mode
-                        playerInstance.setConfig({
-                            stretching: nextStretching
-                        });
+                        playerInstance.setConfig({ stretching: nextStretching });
                     },
                     "custom-button" // Button ID
                 );
@@ -162,19 +148,16 @@
                 const playerContainer = playerInstance.getContainer();
                 const hasTimeline = playerContainer.querySelector(".jw-slider-container") !== null;
 
-                // If there's no timeline, add a class to the player container
                 if (!hasTimeline) {
                     playerContainer.classList.add("no-timeline");
                 }
 
-                // Adjusting the controls positioning
                 const buttonContainer = playerContainer.querySelector(".jw-button-container");
                 const timeSlider = playerContainer.querySelector(".jw-slider-time");
 
                 if (!timeSlider) {
-                    // If no timeline, remove any padding at the bottom
                     playerContainer.style.paddingBottom = "0";
-                    buttonContainer.style.bottom = "0"; // Ensure controls are at the top
+                    buttonContainer.style.bottom = "0";
                 }
 
                 // Add Forward button functionality
@@ -203,28 +186,13 @@
 
         // Get query parameters from the URL
         const urlParams = new URLSearchParams(window.location.search);
-        const channelId = urlParams.get('id'); // Get the 'id' parameter (e.g., "Rishtey")
+        const videoUrl = urlParams.get('max'); // Get the 'src' parameter (video URL)
+        const channelName = urlParams.get('name') || "Default Channel"; // Get the 'name' parameter or use a default
 
-        // Fetch channels data from external JSON file
-        fetch('channels.json')
-            .then(response => response.json())
-            .then(data => {
-                const channel = data.find(ch => ch.id === channelId); 
-
-                if (channel) {
-                    const videoUrl = channel.url;
-                    const channelName = channel.name;
-
-                    // Setup the player with the video URL and channel name
-                    setupPlayer(videoUrl, channelName);
-                } else {
-                    alert("Channel not found.");
-                }
-            })
-            .catch(error => {
-                console.error('Error loading channel data:', error);
-                alert("Error loading channel data.");
-            });
+        if (videoUrl) {
+            // Setup the player with the provided video URL and channel name
+            setupPlayer(videoUrl, channelName);
+        }
     </script>
 </body>
 </html>
